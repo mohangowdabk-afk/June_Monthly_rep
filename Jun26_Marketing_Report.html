@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Kazam.Energy — June 2026 Performance Marketing Report</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B91C1C;--red2:#DC2626;--red-bg:#FEE2E2;--red-mid:#FCA5A5;
+  --silver:#DCDBDB;--black:#121212;--white:#FFFFFF;
+  --g1:#F5F4F4;--g2:#E8E7E7;--g3:#9CA3AF;
+  --text:#1A1A1A;--t2:#4B5563;
+  --green:#15803D;--green-bg:#DCFCE7;
+  --sw:230px;
+}
+body{font-family:'Manrope',sans-serif;background:var(--black);color:var(--text);min-height:100vh}
+.sidebar{position:fixed;left:0;top:0;width:var(--sw);height:100vh;background:#0D0D0D;border-right:1px solid #1F1F1F;display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:#2A2A2A;border-radius:2px}
+.logo{padding:22px 18px 16px;border-bottom:1px solid #1F1F1F}
+.logo-name{font-size:16px;font-weight:800;color:var(--red);letter-spacing:-.5px}
+.logo-sub{font-size:11px;color:#666;margin-top:3px}
+.ns{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#3A3A3A;padding:14px 18px 5px}
+.ni{display:flex;align-items:center;gap:9px;padding:8px 18px;cursor:pointer;font-size:12.5px;font-weight:500;color:#AAAAAA;transition:all .15s;border-left:3px solid transparent;text-decoration:none}
+.ni:hover{color:#FFFFFF;background:rgba(255,255,255,.04)}
+.ni.active{color:#FFFFFF;background:rgba(185,28,28,.1);border-left-color:var(--red)}
+.ni .dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.5}
+.main{margin-left:var(--sw);background:var(--g1);min-height:100vh}
+.topbar{background:var(--white);border-bottom:3px solid var(--red);padding:14px 30px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar h1{font-size:16px;font-weight:800;color:var(--black);letter-spacing:-.3px}
+.badge{background:var(--red);color:var(--white);font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:3px;letter-spacing:.5px}
+.sec{padding:26px 30px 8px;display:none}
+.sec.active{display:block}
+.sec-hd{display:flex;align-items:flex-start;gap:12px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--g2)}
+.sec-ic{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;background:var(--red-bg)}
+.sec-hd h2{font-size:19px;font-weight:800;color:var(--black);letter-spacing:-.4px}
+.sec-hd p{font-size:12px;color:var(--t2);margin-top:2px}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px;margin-bottom:18px}
+.sc{background:var(--white);border-radius:8px;padding:16px 16px 13px;border:1px solid var(--g2);position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.sc:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.07)}
+.sc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--silver);border-radius:8px 8px 0 0}
+.sc.r::after{background:var(--red)}
+.sc.d::after{background:var(--black)}
+.sc.g::after{background:var(--green)}
+.sl{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--g3);margin-bottom:6px}
+.sv{font-size:24px;font-weight:800;color:var(--black);line-height:1;letter-spacing:-.5px}
+.ss{font-size:10.5px;color:var(--t2);margin-top:4px}
+.sd{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:4px}
+.sd.up{background:var(--green-bg);color:var(--green)}
+.sd.dn{background:var(--red-bg);color:var(--red)}
+.sd.neu{background:var(--g2);color:var(--t2)}
+.card{background:var(--white);border-radius:10px;border:1px solid var(--g2);margin-bottom:18px;overflow:hidden}
+.ch{padding:13px 20px 11px;border-bottom:1px solid var(--g2);display:flex;align-items:center;justify-content:space-between}
+.ch h3{font-size:13.5px;font-weight:700;color:var(--black);letter-spacing:-.2px}
+.tag{font-size:9.5px;font-weight:700;color:var(--red);background:var(--red-bg);padding:3px 9px;border-radius:3px;letter-spacing:.3px}
+.tag.g{color:var(--green);background:var(--green-bg)}
+.tag.b{color:#1D4ED8;background:#DBEAFE}
+.cb{padding:16px 20px}
+.cw{position:relative;width:100%;height:260px}
+.cw.tall{height:330px}
+.cw.sh{height:185px}
+.insight{background:#FFF8F8;border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:11px 15px;margin-top:14px;font-size:12px;color:var(--t2);line-height:1.65}
+.insight strong{color:var(--black)}
+.insight .gi{color:var(--green);font-weight:700}
+.insight .ri{color:var(--red);font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:18px}
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{background:var(--black);color:var(--white);font-weight:700;padding:8px 10px;text-align:center;font-size:10.5px;letter-spacing:.3px;border:1px solid #333}
+.tbl td{padding:7px 10px;text-align:center;border:1px solid var(--g2);color:var(--text)}
+.tbl tr:nth-child(even) td{background:var(--g1)}
+.tbl tr.hl td{background:#FEF2F2;font-weight:700;color:var(--red);border-color:var(--red-mid)}
+.tbl tr:hover td{background:rgba(185,28,28,.04)}
+.dtbl{width:100%;border-collapse:collapse;font-size:12px}
+.dtbl th{background:var(--g1);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--g3);padding:8px 12px;text-align:left;border-bottom:2px solid var(--g2)}
+.dtbl td{padding:9px 12px;border-bottom:1px solid var(--g2);vertical-align:middle}
+.dtbl tr:last-child td{border-bottom:none}
+.dtbl tr:hover td{background:var(--g1)}
+.dn-name{font-weight:700;color:var(--red)}
+.dn-name a{color:inherit;text-decoration:none;border-bottom:1px dashed var(--red-mid)}
+.dn-name a:hover{border-bottom-color:var(--red);text-decoration:underline}
+.sb{display:inline-flex;align-items:center;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:3px}
+.sb.ps{background:#DBEAFE;color:#1D4ED8}
+.sb.pso{background:#EDE9FE;color:#6D28D9}
+.sb.pso-li{background:#DBEAFE;color:#0A66C2}
+.sb.dt{background:var(--green-bg);color:var(--green)}
+.sb.off{background:#FEF3C7;color:#D97706}
+.sb.me{background:#E7F3FF;color:#1877F2}
+.cog{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.coi{display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--g1);border-radius:6px;border:1px solid var(--g2);font-size:11.5px}
+.coa{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0;color:white}
+.con{font-weight:700;color:var(--black);font-size:11.5px}
+.com{font-size:10px;color:var(--g3);margin-top:1px}
+.qt{width:100%;border-collapse:collapse;font-size:12.5px}
+.qt th{background:var(--black);color:var(--white);font-weight:700;padding:9px 12px;text-align:center;font-size:11px;border:1px solid #333}
+.qt td{padding:9px 12px;text-align:center;border:1px solid var(--g2)}
+.qt tr.q4 td{color:var(--t2);background:var(--g1)}
+.qt tr.q2 td{background:#FEF2F2;font-weight:700;color:var(--red)}
+.nsg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.nsc{border-radius:10px;overflow:hidden;border:1px solid var(--g2)}
+.nsh{padding:12px 16px;font-size:13px;font-weight:800;color:white;letter-spacing:.2px}
+.nsh.li{background:#0A66C2}
+.nsh.ga{background:#1A7F3C}
+.nsh.meta{background:#1877F2}
+.nsh.str{background:#635BFF}
+.nsi{background:var(--white);padding:14px 16px}
+.nsit{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--g1);font-size:12px;color:var(--t2);line-height:1.5}
+.nsit:last-child{border-bottom:none}
+.nsit::before{content:'→';color:var(--red);font-weight:800;flex-shrink:0;font-size:13px}
+.traf-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.traf-tbl th{background:var(--g1);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--g3);padding:8px 12px;text-align:left;border-bottom:2px solid var(--g2)}
+.traf-tbl td{padding:8px 12px;border-bottom:1px solid var(--g2)}
+.traf-tbl tr:hover td{background:var(--g1)}
+.eng-high{color:var(--green);font-weight:700}
+.eng-low{color:var(--red);font-weight:700}
+.bar-t{height:7px;background:var(--g2);border-radius:4px;overflow:hidden;margin-top:3px;width:100%;max-width:120px}
+.bar-tf{height:100%;border-radius:4px}
+.pend{background:var(--white);border:2px dashed var(--g2);border-radius:10px;padding:40px 24px;text-align:center;color:var(--g3);margin-bottom:18px}
+.pend h4{font-size:14px;font-weight:700;color:var(--t2);margin-bottom:5px}
+.pend p{font-size:12px}
+.banner{background:var(--black);border-radius:10px;padding:20px 24px;display:flex;align-items:center;gap:20px;margin-bottom:20px;border:1px solid #1F1F1F}
+.bnum{font-size:46px;font-weight:800;color:var(--red);line-height:1;flex-shrink:0;letter-spacing:-2px}
+.bdiv{width:1px;height:50px;background:#2A2A2A;flex-shrink:0}
+.binfo h3{font-size:13.5px;font-weight:700;color:var(--white);margin-bottom:4px}
+.binfo p{font-size:11.5px;color:#666;line-height:1.6}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.pill{font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px;background:#1F1F1F;color:#888}
+.pill.r{background:rgba(185,28,28,.2);color:var(--red)}
+.pill.g{background:rgba(21,128,61,.2);color:var(--green)}
+.mrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--g1)}
+.mrow:last-child{border-bottom:none}
+.mlab{font-size:12.5px;font-weight:500;color:var(--text);width:160px;flex-shrink:0}
+.mbar{flex:1;height:8px;background:var(--g2);border-radius:4px;overflow:hidden}
+.mbarf{height:100%;border-radius:4px;background:var(--red)}
+.mval{font-size:12.5px;font-weight:700;color:var(--black);width:30px;text-align:right}
+.sf{height:28px}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:2px}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="logo">
+    <img src="https://d1bfnsg9serpwj.cloudfront.net/public/newAssets/logo-white.png" alt="Kazam" style="height:28px;width:auto;margin-bottom:6px;display:block"/>
+    <div class="logo-sub">June 2026 · Marketing Report</div>
+  </div>
+  <div class="ns">Overview</div>
+  <a class="ni active" onclick="show('snap',this)"><span class="dot"></span>Snapshot & Spends</a>
+  <div class="ns">Hardware</div>
+  <a class="ni" onclick="show('hw',this)"><span class="dot"></span>Hardware Leads (Bigin)</a>
+  <div class="ns">HubSpot</div>
+  <a class="ni" onclick="show('contacts',this)"><span class="dot"></span>Marketing Contacts</a>
+  <a class="ni" onclick="show('sqls',this)"><span class="dot"></span>SQLs Breakdown</a>
+  <a class="ni" onclick="show('deals',this)"><span class="dot"></span>Marketing Deals</a>
+  <a class="ni" onclick="show('channels',this)"><span class="dot"></span>Top Channels</a>
+  <div class="ns">Quarterly</div>
+  <a class="ni" onclick="show('qtr',this)"><span class="dot"></span>Q2 '26 Complete</a>
+  <div class="ns">Campaigns</div>
+  <a class="ni" onclick="show('li',this)"><span class="dot"></span>LinkedIn (Paused)</a>
+  <a class="ni" onclick="show('gads',this)"><span class="dot"></span>Google Ads</a>
+  <a class="ni" onclick="show('meta',this)"><span class="dot"></span>Meta</a>
+  <div class="ns">Traffic</div>
+  <a class="ni" onclick="show('ga4',this)"><span class="dot"></span>Website & LP (GA4)</a>
+  <div class="ns">Strategy</div>
+  <a class="ni" onclick="show('next',this)"><span class="dot"></span>Next Steps (Jul)</a>
+</nav>
+
+<main class="main">
+<div class="topbar">
+  <h1>June 2026 — Performance Marketing Report</h1>
+  <span class="badge">JUN 1 – JUN 30, 2026</span>
+</div>
+
+<!-- ══ SNAPSHOT ══ -->
+<section id="snap" class="sec active">
+  <div class="sec-hd"><div class="sec-ic">📊</div><div><h2>Snapshot — MQLs & Spends</h2><p>Monthly tracker Nov 2025 → Jun 2026 · All channels</p></div></div>
+
+  <div class="banner">
+    <div class="bnum">770</div><div class="bdiv"></div>
+    <div class="binfo">
+      <h3>Total MQLs in June 2026 — Best deal month ever (₹41.3L) · SAAS back up strongly</h3>
+      <p>291 SAAS · 470 Hardware · 9 Hybrid · 340 HW SQLs (Proposal Shared) · 8 Deals (3 G Ads + 5 Direct) · ₹41.3L deal value</p>
+      <div class="pills">
+        <span class="pill g">↑ +88% SAAS MQLs (155 → 291) ★</span>
+        <span class="pill g">HW MQL: 470 (PS+RCB+CW+CL)</span>
+        <span class="pill g">↑ +64% deal value (₹25.2L → ₹41.3L)</span>
+        <span class="pill g">HW SQL = 340 (Proposal Shared · 26.3% rate)</span>
+        <span class="pill">₹2,90,052 total spend (+32%)</span>
+        <span class="pill g">₹51 Meta CPL (was ₹97) ★</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:10px">
+    <div class="sc r"><div class="sl">Total MQLs</div><div class="sv">770</div><div class="sd up">↑ +23% MoM</div><div class="ss">291 + 470 + 9</div></div>
+    <div class="sc g"><div class="sl">MQLs SAAS</div><div class="sv">291</div><div class="sd up">↑ +88% MoM ★</div></div>
+    <div class="sc"><div class="sl">MQLs Hardware</div><div class="sv">470</div><div class="ss">PS+RCB+CW+CL</div></div>
+    <div class="sc"><div class="sl">MQLs Hybrid</div><div class="sv">9</div><div class="ss">SAAS + HW</div></div>
+  </div>
+  <div class="sg" style="grid-template-columns:repeat(5,1fr)">
+    <div class="sc d"><div class="sl">SAAS SQLs</div><div class="sv">1</div><div class="ss">Direct traffic · Sanjay Khare</div></div>
+    <div class="sc" style="border-top:3px solid #D97706"><div class="sl">HW SQLs</div><div class="sv">340</div><div class="ss">Proposal Shared · 26.3%</div></div>
+    <div class="sc g"><div class="sl">Deals Created</div><div class="sv">8</div><div class="ss">₹41.3L value · Best ever</div></div>
+    <div class="sc" style="border-top:3px solid #16A34A;background:#F0FDF4"><div class="sl">🏆 Closed Won</div><div class="sv" style="color:#15803D">₹3.0L</div><div class="ss">Gangashree EV · Jun 23</div></div>
+    <div class="sc"><div class="sl">Total Spend</div><div class="sv" style="font-size:19px">₹2.90L</div><div class="sd dn">↑ +32% MoM</div></div>
+  </div>
+
+  <!-- Closed Won Callout -->
+  <div style="background:#052E16;border-radius:10px;padding:16px 22px;display:flex;align-items:center;gap:20px;margin-bottom:20px;border:1.5px solid #16A34A">
+    <div style="font-size:36px;flex-shrink:0">🏆</div>
+    <div style="flex:1">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#4ADE80;margin-bottom:4px">Closed Won — June 2026</div>
+      <div style="font-size:15px;font-weight:800;color:#FFFFFF">Gangashree EV — ₹3,00,000 total</div>
+      <div style="font-size:12px;color:#86EFAC;margin-top:3px;line-height:1.6">Basic Plan ₹19,000 + Premium Expansion ₹2,81,000 · Same day (Jun 23) · Source: G Ads / saas_ind_search · Owner: Sathvik Reddy</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0">
+      <div style="background:#16A34A;color:#FFFFFF;font-size:12px;font-weight:800;padding:5px 14px;border-radius:4px;letter-spacing:.3px">₹19,000</div>
+      <div style="background:#16A34A;color:#FFFFFF;font-size:12px;font-weight:800;padding:5px 14px;border-radius:4px;letter-spacing:.3px">₹2,81,000</div>
+      <div style="background:#FFFFFF;color:#052E16;font-size:11px;font-weight:800;padding:4px 14px;border-radius:4px">= ₹3,00,000 CW</div>
+    </div>
+  </div>
+
+  <!-- Cross-Platform Attribution -->
+  <div class="card" style="margin-bottom:20px">
+    <div class="ch">
+      <h3>📊 June 2026 — Attribution by Platform</h3>
+      <span class="tag g">Full attribution · HubSpot</span>
+    </div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="dtbl">
+        <thead>
+          <tr>
+            <th style="width:130px">Platform</th>
+            <th>Spend</th><th>HS Contacts</th><th>CPL</th>
+            <th>SQLs</th><th>Deals</th><th>Deal Value</th><th>Revenue/Spend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:2px;background:#B91C1C;display:inline-block;flex-shrink:0"></span><strong>Google Ads</strong></span></td>
+            <td>₹2,48,111</td><td><strong>472</strong></td><td>₹526</td>
+            <td style="color:var(--g3)">0</td>
+            <td><span class="eng-high">3</span> <span style="font-size:10px;color:var(--g3)">(Gangashree ×2 + Charge Fast X)</span></td>
+            <td><span style="font-weight:700;color:var(--green)">₹6,30,000</span></td>
+            <td><span class="eng-high">2.75x</span></td>
+          </tr>
+          <tr>
+            <td><span style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:2px;background:#1877F2;display:inline-block;flex-shrink:0"></span><strong>Meta</strong></span></td>
+            <td>₹41,941</td><td><span style="color:var(--green);font-weight:700">826</span></td><td><span style="color:var(--green);font-weight:700">₹50.8 ★</span></td>
+            <td style="color:var(--g3)">0</td>
+            <td style="color:var(--g3)">0</td>
+            <td style="color:var(--g3)">—</td>
+            <td style="color:var(--g3)">Volume play</td>
+          </tr>
+          <tr>
+            <td><span style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:2px;background:#374151;display:inline-block;flex-shrink:0"></span><strong>Direct Traffic</strong></span></td>
+            <td style="color:var(--g3)">—</td><td><strong>260</strong></td><td style="color:var(--g3)">Organic</td>
+            <td><span class="eng-high">1</span> <span style="font-size:10px;color:var(--g3)">(Sanjay Khare)</span></td>
+            <td><span class="eng-high">5</span> <span style="font-size:10px;color:var(--g3)">(Switch-E Ride · DYU · Zeus · Hardeep · Chajigo)</span></td>
+            <td><span style="font-weight:700;color:var(--green)">₹35,00,000</span></td>
+            <td style="color:var(--g3)">Organic</td>
+          </tr>
+          <tr style="background:#F9F9F9">
+            <td style="font-weight:700;color:var(--g3);font-size:11px">TOTAL</td>
+            <td style="font-weight:700">₹2,90,052</td>
+            <td style="font-weight:700">1,558</td>
+            <td style="font-weight:700">₹186 blended</td>
+            <td style="font-weight:800;color:var(--green)">1 SAAS<br><span style="font-size:10px;color:var(--g3);font-weight:400">+340 HW (Proposal Shared)</span></td>
+            <td style="font-weight:800;color:var(--green)">8</td>
+            <td style="font-weight:800;color:var(--green)">₹41,30,000</td>
+            <td style="font-weight:700;color:var(--green)">14.2x blended ★★</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="insight" style="margin-top:12px">
+        <strong>Best deal month on record:</strong>
+        ₹41.3L from 8 deals on ₹2.90L spend = <span class="gi">14.2x blended ROI — best deal month on record</span>.
+        Direct traffic converted 5 of 8 deals (₹35L) — <span class="gi">kazam.energy/get-in-touch generated 3 deals in a single day (Jun 19)</span>.
+        G Ads 3 deals all from <span class="gi">saas_ind_search — Gangashree EV went Basic → Premium in the same month (₹3L total)</span>.
+        <span class="gi">SAAS MQLs rebounded strongly to 291 (+88% MoM) — pipeline recovery after May dip.</span>
+        Meta efficiency breakthrough: <span class="gi">₹50.8 HS CPL (was ₹97 in May) · 826 contacts on ₹42K spend.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <div class="ch"><h3>MQL Trend (Nov 2025 → Jun 2026)</h3><span class="tag">All channels</span></div>
+      <div class="cb"><div class="cw tall"><canvas id="mqlChart"></canvas></div></div>
+      <div class="cb" style="padding-top:0"><div class="insight"><span class="gi">SAAS MQLs rebounded to 291 in June (+88% MoM)</span> — largest single-month SAAS count since Apr 2026 (214). HW MQLs at 470 (PS+RCB+CW+CL · +1% MoM) on 789 Meta form leads and 2,100 G Ads HW clicks. <span class="gi">Total 770 MQLs vs 624 in May (+23%).</span> LinkedIn still paused — July restart critical to maintain SAAS momentum.</div></div>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>Spend Distribution — June 2026</h3><span class="tag">₹2,90,052 total</span></div>
+      <div class="cb"><div class="cw" style="height:170px"><canvas id="spendPie"></canvas></div>
+        <div style="display:flex;flex-direction:column;gap:9px;margin-top:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px"><span style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;border-radius:2px;background:#B91C1C;display:inline-block"></span><strong>Google Ads</strong></span><span style="font-weight:700">₹2,48,111 <span style="color:var(--g3);font-weight:400">(85.5%)</span></span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px"><span style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;border-radius:2px;background:#1877F2;display:inline-block"></span><strong>Meta</strong></span><span style="font-weight:700">₹41,941 <span style="color:var(--g3);font-weight:400">(14.5%)</span></span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px"><span style="display:flex;align-items:center;gap:7px"><span style="width:11px;height:11px;border-radius:2px;background:#9CA3AF;display:inline-block"></span><strong>LinkedIn</strong></span><span style="font-weight:700;color:var(--g3)">₹0 (Paused)</span></div>
+        </div>
+        <div class="insight">LinkedIn fully paused in June — <span class="ri">₹0 spend</span>. G Ads dominates at 85.5%. <span class="gi">Meta at 14.5% drove 826 HS contacts (₹51 CPL) — most efficient paid CPL ever.</span> Spend mix heavily skewed to G Ads; Meta budget has room to grow given current efficiency.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Snapshot Table -->
+  <div class="card">
+    <div class="ch"><h3>Full Snapshot Table</h3><span class="tag">Source: Leads Tracker</span></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="tbl">
+        <thead>
+          <tr><th rowspan="2">Month</th><th rowspan="2">MQL's (SAAS)</th><th rowspan="2">MQL's (HW)</th><th rowspan="2">SQL's</th><th rowspan="2">Total</th><th rowspan="2">Deals Created</th><th rowspan="2">Deal Value</th><th colspan="3">Spends (Monthly)</th></tr>
+          <tr><th>G Ads</th><th>LinkedIn</th><th>Meta</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Nov_2025</td><td>74</td><td>28</td><td>5</td><td>102</td><td>—</td><td>—</td><td>₹2,45,303</td><td>₹4,15,016</td><td>—</td></tr>
+          <tr><td>Dec_2025</td><td>23</td><td>36</td><td>4</td><td>59</td><td>—</td><td>—</td><td>₹65,548</td><td>₹83,553</td><td>—</td></tr>
+          <tr><td>Jan_2026</td><td>40</td><td>144</td><td>5 (+1 HW)</td><td>184</td><td>—</td><td>—</td><td>₹1,32,945</td><td>₹48,483</td><td>—</td></tr>
+          <tr><td>Feb_2026</td><td>181</td><td>283</td><td>12</td><td>464</td><td>5</td><td>₹32.1L</td><td>₹2,93,641</td><td>₹2,23,515</td><td>₹17,002</td></tr>
+          <tr><td>Mar_2026</td><td>190</td><td>331</td><td>4</td><td>521</td><td>4</td><td>₹22.5L</td><td>₹2,44,521</td><td>₹2,05,323</td><td>₹32,870</td></tr>
+          <tr><td>Apr_2026</td><td>214</td><td>601</td><td>11 (5 direct, 6 paid), 54 HW</td><td>815</td><td>3</td><td>₹9.8L</td><td>₹2,31,318</td><td>₹2,10,088</td><td>₹50,111</td></tr>
+          <tr><td>May_2026</td><td>155</td><td>467</td><td>1 direct, 122 HW</td><td>624</td><td>5 (2 direct, 1 LI, 2 G ads)</td><td>₹25.2L</td><td>₹1,70,748</td><td>₹24,748</td><td>₹24,664</td></tr>
+          <tr class="hl"><td>⭐ Jun_2026</td><td>291</td><td>470</td><td>1 (1 direct SAAS), 340 HW</td><td>770</td><td>8 (5 direct, 3 G ads)</td><td>₹41.3L ★★</td><td>₹2,48,111</td><td>—</td><td>₹41,941</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="sf"></div>
+</section>
+
+<!-- ══ HARDWARE LEADS ══ -->
+<section id="hw" class="sec">
+  <div class="sec-hd"><div class="sec-ic" style="background:#FEF3C7">⚡</div><div><h2>Hardware Leads — June 2026</h2><p>Zoho Bigin CRM · 1,291 total leads · 26.3% SQL rate (Proposal Shared) · Source: Contacts_2026_07_03.csv</p></div></div>
+
+  <div class="sg" style="grid-template-columns:repeat(4,1fr)">
+    <div class="sc r"><div class="sl">Total Leads</div><div class="sv">1,291</div><div class="ss">Bigin CRM · Jul 3 pull</div></div>
+    <div class="sc d"><div class="sl">HW SQL (Proposal Shared)</div><div class="sv">340</div><div class="ss">26.3% of 1,291</div></div>
+    <div class="sc g"><div class="sl">Hot Leads</div><div class="sv">25</div><div class="ss">↑ vs 21 in May</div></div>
+    <div class="sc"><div class="sl">HW MQL Rate</div><div class="sv">36.4%</div><div class="ss">470 of 1,291</div></div>
+  </div>
+
+  <!-- HW Closed Won callout -->
+  <div style="background:#052E16;border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:16px;margin-bottom:18px;border:1.5px solid #16A34A">
+    <div style="font-size:28px;flex-shrink:0">🏆</div>
+    <div style="flex:1">
+      <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#4ADE80;margin-bottom:3px">HW Closed Won — June 2026</div>
+      <div style="font-size:13.5px;font-weight:800;color:#FFFFFF">1 Hardware deal closed · ₹49,350 (Individual · Direct Traffic)</div>
+      <div style="font-size:11.5px;color:#86EFAC;margin-top:2px">Hardware Lead Status = Closed Won · Jun 2026 · Bigin CRM</div>
+    </div>
+    <div style="background:#16A34A;color:#FFFFFF;font-size:13px;font-weight:800;padding:7px 16px;border-radius:4px;flex-shrink:0">CLOSED WON</div>
+  </div>
+
+  <div class="two">
+    <div class="card" style="margin-bottom:0">
+      <div class="ch"><h3>Customer Type Breakdown</h3><span class="tag">247 tagged · Bigin CSV · Jul 3</span></div>
+      <div class="cb">
+        <div class="cw sh"><canvas id="hwCustC"></canvas></div>
+        <div class="insight">CPO dominates at <span class="gi">196 leads (79.4% of tagged)</span> — fleet operators remain the primary hardware buyer. Individual: 35 (14.2%). RWA: 14 (5.7%). <span class="ri">1,046 of 1,291 leads untagged</span> — tagging discipline critical as volume scales.</div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="ch"><h3>Lead Disposition Breakdown</h3><span class="tag">1,291 leads · Bigin CSV · Jul 3</span></div>
+      <div class="cb">
+        <div class="cw sh"><canvas id="hwStatusC"></canvas></div>
+        <div class="insight"><span class="ri">Not Responding (RnR) at 49.6% (640)</span> — expected for high volume month. <span class="gi">Proposal Shared: 340 (26.3%)</span> — strong active pipeline, up from 210 in prior pull. Requested Call Back: 129 (10.0%). Not Interested: 114 (8.8%). Just Looking: 63 (4.9%). <span class="gi">1 Closed Won.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <div class="ch"><h3>Lead Disposition Detail — Jun 2026</h3><span class="tag">1,291 leads · All owners · Contacts_2026_07_03.csv</span></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr><th>Disposition</th><th>Count</th><th>Share %</th><th>Signal</th></tr></thead>
+        <tbody>
+          <tr><td style="text-align:left;font-weight:600">Not Responding (RnR)</td><td style="color:var(--t2)">640</td><td>49.6%</td><td style="text-align:left;font-size:11px;color:var(--g3)">Normal — first contact attempts on high-volume month</td></tr>
+          <tr><td style="text-align:left;font-weight:600">Proposal Shared</td><td style="color:var(--green);font-weight:700">340</td><td>26.3%</td><td style="text-align:left;font-size:11px;color:var(--green)">Active pipeline ★ — up from 210 in prior pull</td></tr>
+          <tr><td style="text-align:left;font-weight:600">Requested Call Back</td><td style="color:var(--green)">129</td><td>10.0%</td><td style="text-align:left;font-size:11px;color:var(--green)">Warm — follow-up prioritised</td></tr>
+          <tr><td style="text-align:left;font-weight:600">Not Interested</td><td style="color:var(--red)">114</td><td>8.8%</td><td style="text-align:left;font-size:11px;color:var(--red)">Disqualified</td></tr>
+          <tr><td style="text-align:left;font-weight:600">Just Looking for Information</td><td style="color:var(--g3)">63</td><td>4.9%</td><td style="text-align:left;font-size:11px;color:var(--g3)">Educational — nurture sequence</td></tr>
+          <tr><td style="text-align:left;font-weight:600">No Status</td><td style="color:var(--g3)">4</td><td>0.3%</td><td style="text-align:left;font-size:11px;color:var(--g3)">Not yet dispositioned</td></tr>
+          <tr><td style="text-align:left;font-weight:600">Closed Won</td><td style="color:var(--green);font-weight:700">1</td><td>0.1%</td><td style="text-align:left;font-size:11px;color:var(--green)">HW deal closed ★</td></tr>
+          <tr style="background:var(--g1)"><td style="font-weight:800;text-align:left">TOTAL</td><td style="font-weight:800">1,291</td><td style="font-weight:800">100%</td><td style="text-align:left;font-size:11px;color:var(--g3)">All 3 owners · Nagamma Kote 767 · Mallika J 347 · Adnan Ali 177</td></tr>
+        </tbody>
+      </table>
+      <div class="insight" style="margin-top:10px"><strong>Proposal Shared up to 340 (26.3%)</strong> — 340 active conversations, significantly up from 210. <span class="gi">Requested Call Back (129) + Proposal Shared (340) = 469 warm leads — ₹46.9L+ potential</span> at ₹10K avg close. <span class="ri">Not Interested at 114 (8.8%)</span> — verify before marking as permanently lost. HW SQL = Proposal Shared (340) · HW MQL = PS+RCB+CW+CL (470 · 36.4% rate).</div>
+    </div>
+  </div>
+
+  <div class="two" style="margin-top:18px">
+    <div class="card" style="margin-bottom:0">
+      <div class="ch"><h3>Lead Source × Campaign</h3><span class="tag">1,288 tagged · Bigin dashboard</span></div>
+      <div class="cb">
+        <div class="cw" style="height:220px"><canvas id="hwSrcC"></canvas></div>
+        <div class="insight"><span class="gi">Paid Social leads the source mix at 547 (42.5%)</span> — Meta HW_New_Aud driving the bulk. Paid Search: 215 (16.7%). Direct Traffic: 186 (14.4%). Offline: 147 (11.4%) — sales-created, not marketing-attributed.</div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="ch"><h3>Revenue by Customer Type</h3><span class="tag">Closed deals · Last month · Bigin</span></div>
+      <div class="cb">
+        <div class="cw" style="height:140px"><canvas id="hwRevC"></canvas></div>
+        <div style="overflow-x:auto;margin-top:10px">
+          <table class="dtbl">
+            <thead><tr><th>Customer Type</th><th>Source</th><th>Deal Amount</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Individual</strong></td><td><span class="sb dt">Direct Traffic</span></td><td style="font-weight:700;color:var(--green)">₹49,350</td></tr>
+              <tr><td><strong>CPO</strong></td><td><span class="sb off">Offline</span></td><td style="font-weight:700;color:var(--green)">₹25,590</td></tr>
+              <tr><td><strong>None (untagged)</strong></td><td style="color:var(--g3)">—</td><td style="font-weight:700;color:var(--green)">₹20,000</td></tr>
+              <tr style="background:var(--g1)"><td style="font-weight:700">Total</td><td></td><td style="font-weight:800;color:var(--green)">₹94,940</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="insight" style="margin-top:10px">Individual customers closed ₹49,350 via Direct Traffic — highest revenue by type. <span class="ri">CPO closed deals are OFFLINE (₹25,590) — sales-attributed, not marketing.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sf"></div>
+</section>
+
+<!-- ══ CONTACTS ══ -->
+<section id="contacts" class="sec">
+  <div class="sec-hd"><div class="sec-ic">👥</div><div><h2>Marketing Contacts (Jun)</h2><p>Lead stages · 1,555 total contacts · HubSpot</p></div></div>
+  <div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:10px">
+    <div class="sc r"><div class="sl">Total Contacts</div><div class="sv">1,555</div><div class="sd up">↑ +97% MoM</div></div>
+    <div class="sc g"><div class="sl">Hardware Lead</div><div class="sv">1,182</div><div class="ss">76.0% share</div></div>
+    <div class="sc"><div class="sl">In Progress (SAAS)</div><div class="sv">267</div><div class="ss">17.2%</div></div>
+    <div class="sc"><div class="sl">Unqualified</div><div class="sv">80</div><div class="ss">5.1%</div></div>
+  </div>
+  <div class="sg" style="grid-template-columns:repeat(4,1fr)">
+    <div class="sc"><div class="sl">MQL (SAAS)</div><div class="sv">14</div><div class="ss">0.9%</div></div>
+    <div class="sc"><div class="sl">MQL (Hybrid)</div><div class="sv">9</div><div class="ss">0.6%</div></div>
+    <div class="sc"><div class="sl">Info Gathering</div><div class="sv">2</div><div class="ss">0.1%</div></div>
+    <div class="sc d"><div class="sl">SQL (SAAS)</div><div class="sv">1</div><div class="ss">0.1%</div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><h3>Lead Status Breakdown — Jun vs May 2026</h3><span class="tag">1,555 contacts · HubSpot</span></div>
+    <div class="cb"><div class="cw tall"><canvas id="stageC"></canvas></div>
+      <div class="insight"><strong>1,555 contacts vs 790 in May — <span class="gi">+97% MoM</span>.</strong> Hardware Lead surged to 1,182 (76%) driven by Meta's HW_New_Aud campaign. In Progress at 267 is <span class="gi">active warm pipeline</span> — up from 207 in May. <span class="ri">MQL (SAAS) dropped from 22 to 14</span> — LinkedIn still off. SQL remains at 1 in the HubSpot lead status count (2 contacts have SQL status but both are SAAS, and the Bigin HW SQLs are tracked separately).</div>
+    </div>
+  </div>
+  <div class="sf"></div>
+</section>
+
+<!-- ══ SQLS ══ -->
+<section id="sqls" class="sec">
+  <div class="sec-hd"><div class="sec-ic">🎯</div><div><h2>SQL's Breakdown (Jun)</h2><p>By contact owner & original traffic source</p></div></div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="ch"><h3>June SAAS SQLs — Contact Detail</h3><span class="tag g">Source: HubSpot · Tracker</span></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="dtbl">
+        <thead><tr><th>#</th><th>Contact</th><th>Company</th><th>Create Date</th><th>Owner</th><th>Source</th><th>Channel Detail</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--g3)">1</td><td class="dn-name">Sanjay Khare</td><td style="font-size:11px;color:var(--t2)">Switch E Ride</td><td>Jun 9, 2026</td><td>Harshdeep Kaur</td><td><span class="sb dt">Direct</span></td><td style="font-size:11px;color:var(--g3)">kazam.energy/get-in-touch</td></tr>
+        </tbody>
+      </table>
+      <div class="insight" style="margin-top:10px">June SAAS SQL owned by <span class="gi">Harshdeep Kaur</span> via Direct Traffic. <span class="gi">Switch-E Ride (Sanjay Khare) also generated a ₹10L deal (BSMS Deal · Jun 19)</span> — same company, full-funnel conversion from SQL to deal in one month.</div>
+    </div>
+  </div>
+  <div class="two">
+    <div class="card" style="margin-bottom:0">
+      <div class="ch"><h3>By Traffic Source</h3><span class="tag">1 SAAS SQL</span></div>
+      <div class="cb"><div class="cw"><canvas id="sqlSrc"></canvas></div>
+        <div class="insight"><span class="ri">0 paid SQLs in June</span> — SQL from Direct Traffic. kazam.energy/get-in-touch is the highest-intent entry point. <span class="ri">SAAS paid SQL pipeline is dry — LinkedIn reactivation or SAAS Meta campaign is the priority.</span></div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="ch"><h3>By Contact Owner</h3><span class="tag">1 SQL total</span></div>
+      <div class="cb" style="padding-top:20px">
+        <div class="mrow"><div class="mlab">Harshdeep Kaur</div><div class="mbar"><div class="mbarf" style="width:100%"></div></div><div class="mval">1</div></div>
+        <div style="margin-top:16px;font-size:11.5px;color:var(--t2)">SQL owned by Harshdeep Kaur — consistent with May (1 SQL, Harshdeep). She is the primary SAAS SQL owner for the second consecutive month.</div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"></div>
+</section>
+
+<!-- ══ DEALS ══ -->
+<section id="deals" class="sec">
+  <div class="sec-hd"><div class="sec-ic">💼</div><div><h2>Marketing Deals (Jun)</h2><p>8 deals · ₹41.3L total value · Source: HubSpot CRM</p></div></div>
+  <div class="sg" style="grid-template-columns:repeat(3,1fr);margin-bottom:10px">
+    <div class="sc r"><div class="sl">Marketing Deal Value</div><div class="sv">₹41.3L</div><div class="sd up">↑ +64% MoM ★★</div></div>
+    <div class="sc g"><div class="sl">Deals Created</div><div class="sv">8</div><div class="ss">3 G Ads · 5 Direct · Best ever</div></div>
+    <div class="sc" style="border-top:3px solid #D97706"><div class="sl">Top Deal</div><div class="sv" style="font-size:16px">Switch-E Ride</div><div class="ss">₹10,00,000 · Direct</div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><h3>Deal Details — June 2026</h3><span class="tag">Source: HubSpot CRM · non-OFFLINE only</span></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="dtbl">
+        <thead><tr><th>Deal Name</th><th>Stage</th><th>Amount</th><th>Create Date</th><th>Owner</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td><span class="dn-name"><a href="https://app-na2.hubspot.com/contacts/242093352/record/0-3/331240923864" target="_blank">Switch-E Ride — BSMS Deal</a></span></td><td style="font-size:11px">Decision Maker Bought-In</td><td style="font-weight:700;color:var(--black)">₹10,00,000</td><td style="font-size:11px;color:var(--t2)">Jun 19, 2026</td><td style="font-size:11px">Janani S P</td><td><span class="sb dt">Direct</span> <span style="font-size:10px;color:var(--g3)">get-in-touch</span></td></tr>
+          <tr><td><span class="dn-name"><a href="https://app-na2.hubspot.com/contacts/242093352/record/0-3/332789346024" target="_blank">DYU EV — CMS + WLA</a></span></td><td style="font-size:11px">Presentation Scheduled</td><td style="font-weight:700;color:var(--black)">₹7,00,000</td><td style="font-size:11px;color:var(--t2)">Jun 26, 2026</td><td style="font-size:11px">Dhiraj Ganjoo</td><td><span class="sb dt">Direct</span> <span style="font-size:10px;color:var(--g3)">kazam.energy/</span></td></tr>
+          <tr><td><span class="dn-name"><a href="https://app-na2.hubspot.com/contacts/242093352/record/0-3/330021373671" target="_blank">Chajigo — New Deal</a></span></td><td style="font-size:11px">Appointment Scheduled</td><td style="font-weight:700;color:var(--black)">₹9,00,000</td><td style="font-size:11px;color:var(--t2)">Jun 16, 2026</td><td style="font-size:11px">Dhiraj Ganjoo</td><td><span class="sb dt">Direct</span> <span style="font-size:10px;color:var(--g3)">products/revenue-management</span></td></tr>
+          <tr><td><span class="dn-name"><a href="https://app-na2.hubspot.com/contacts/242093352/record/0-3/331240194759" target="_blank">Zeus Docks — Premium CMS & WLA</a></span></td><td style="font-size:11px">Appointment Scheduled</td><td style="font-weight:700;color:var(--black)">₹4,50,000</td><td style="font-size:11px;color:var(--t2)">Jun 19, 2026</td><td style="font-size:11px">Sathvik Reddy</td><td><span class="sb dt">Direct</span> <span style="font-size:10px;color:var(--g3)">get-in-touch</span></td></tr>
+          <tr><td><span class="dn-name"><a href="https://app-na2.hubspot.com/contacts/242093352/record/0-3/331236474591" target="_blank">Hardeep S P — Premium CMS & WLA</a></span></td><td style="font-size:11px">Qualified To Buy</td><td style="font-weight:700;color:var(--black)">₹4,50,000</td><td style="font-size:11px;color:var(--t2)">Jun 19, 2026</td><td style="font-size:11px">Sathvik Reddy</td><td><span class="sb dt">Direct</span> <span style="font-size:10px;color:var(--g3)">get-in-touch</span></td></tr>
+          <tr><td><span class="dn-name"><a href="https://app-na2.hubspot.com/contacts/242093352/record/0-3/332999682758" target="_blank">Charge Fast X — New Deal</a></span></td><td style="font-size:11px">Qualified To Buy</td><td style="font-weight:700;color:var(--black)">₹3,30,000</td><td style="font-size:11px;color:var(--t2)">Jun 29, 2026</td><td style="font-size:11px">Sathvik Reddy</td><td><span class="sb ps">Paid Search</span> <span style="font-size:10px;color:var(--g3)">saas_ind_search</span></td></tr>
+          <tr><td><span class="dn-name"><a href="https://app-na2.hubspot.com/contacts/242093352/record/0-3/331480209119" target="_blank">Gangashree EV — Expansion to Premium</a></span> <span style="background:#15803D;color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px">★ CW</span></td><td style="font-size:11px;color:var(--green);font-weight:600">Closed Won</td><td style="font-weight:700;color:var(--green)">₹2,81,000</td><td style="font-size:11px;color:var(--t2)">Jun 23, 2026</td><td style="font-size:11px">Sathvik Reddy</td><td><span class="sb ps">Paid Search</span> <span style="font-size:10px;color:var(--g3)">saas_ind_search</span></td></tr>
+          <tr><td><span class="dn-name"><a href="https://app-na2.hubspot.com/contacts/242093352/record/0-3/331610348223" target="_blank">Gangashree EV — Basic Plan</a></span> <span style="background:#15803D;color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px">★ CW</span></td><td style="font-size:11px;color:var(--green);font-weight:600">Closed Won</td><td style="font-weight:700;color:var(--green)">₹19,000</td><td style="font-size:11px;color:var(--t2)">Jun 23, 2026</td><td style="font-size:11px">Sathvik Reddy</td><td><span class="sb ps">Paid Search</span> <span style="font-size:10px;color:var(--g3)">saas_ind_search</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cb" style="padding-top:0">
+      <div class="insight"><strong>Jun 19 was deal day:</strong> 3 direct-traffic deals created in a single day (Switch-E Ride ₹10L + Zeus Docks ₹4.5L + Hardeep S P ₹4.5L = ₹19L in one day via kazam.energy/get-in-touch). <span class="gi">Gangashree EV first-ever same-month upsell</span> — Basic Plan (₹19K) then Expansion (₹2.81L), both from saas_ind_search on Jun 23. 3 deal owners this month: Sathvik Reddy ₹15.3L · Dhiraj Ganjoo ₹16L · Janani S P ₹10L.</div>
+    </div>
+  </div>
+  <div class="card"><div class="ch"><h3>Deal Value by Channel</h3></div><div class="cb"><div class="cw sh"><canvas id="dealC"></canvas></div></div></div>
+
+  <div class="card">
+    <div class="ch"><h3>Q2 2026 Deals — Apr + May + Jun</h3><span class="tag g">Q2 Complete · ₹76.3L total</span></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="dtbl">
+        <thead><tr><th>Month</th><th>Deal</th><th>Amount</th><th>Stage</th><th>Source</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td style="font-size:11px;color:var(--g3);font-weight:600">Apr</td><td style="font-weight:600">Marquay Trading</td><td style="font-weight:700;color:var(--green)">₹6,59,920</td><td style="font-size:11px">Decision Maker Bought-In</td><td><span class="sb ps">Paid Search</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr><td style="font-size:11px;color:var(--g3);font-weight:600">Apr</td><td style="font-weight:600">India Liner</td><td style="font-weight:700;color:var(--green)">₹2,50,000</td><td style="font-size:11px;color:var(--g3)">Inactive</td><td><span class="sb pso">Paid Social</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr><td style="font-size:11px;color:var(--g3);font-weight:600">Apr</td><td style="font-weight:600">Ezit</td><td style="font-weight:700;color:var(--green)">₹70,000</td><td style="font-size:11px;color:var(--g3)">Inactive</td><td><span class="sb dt">Direct</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#F9F9FA"><td style="font-size:11px;color:var(--t2);font-weight:700">May</td><td style="font-weight:600">RL Dynamic Engineering</td><td style="font-weight:700;color:var(--green)">₹6,67,870</td><td style="font-size:11px">Qualified To Buy</td><td><span class="sb ps">Paid Search</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#F9F9FA"><td style="font-size:11px;color:var(--t2);font-weight:700">May</td><td style="font-weight:600">DJ Vending Philippines</td><td style="font-weight:700;color:var(--green)">₹6,22,119</td><td style="font-size:11px">Qualified To Buy</td><td><span class="sb ps">Paid Search</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#F9F9FA"><td style="font-size:11px;color:var(--t2);font-weight:700">May</td><td style="font-weight:600">ETPL</td><td style="font-weight:700;color:var(--green)">₹4,50,000</td><td style="font-size:11px">Presentation Scheduled</td><td><span class="sb dt">Direct</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#F9F9FA"><td style="font-size:11px;color:var(--t2);font-weight:700">May</td><td style="font-weight:600">Klickwatt CMS</td><td style="font-weight:700;color:var(--green)">₹4,00,000</td><td style="font-size:11px">Decision Maker Bought-In</td><td><span class="sb dt">Direct</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#F9F9FA"><td style="font-size:11px;color:var(--t2);font-weight:700">May</td><td style="font-weight:600">OFA International</td><td style="font-weight:700;color:var(--green)">₹3,82,998</td><td style="font-size:11px">Appointment Scheduled</td><td><span class="sb pso-li">Paid Social (LI)</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#FEF2F2"><td style="font-size:11px;color:var(--red);font-weight:700">Jun</td><td style="font-weight:600">Switch-E Ride — BSMS</td><td style="font-weight:700;color:var(--green)">₹10,00,000</td><td style="font-size:11px">Decision Maker Bought-In</td><td><span class="sb dt">Direct</span></td><td style="font-size:11px">Janani S P</td></tr>
+          <tr style="background:#FEF2F2"><td style="font-size:11px;color:var(--red);font-weight:700">Jun</td><td style="font-weight:600">DYU EV — CMS + WLA</td><td style="font-weight:700;color:var(--green)">₹7,00,000</td><td style="font-size:11px">Presentation Scheduled</td><td><span class="sb dt">Direct</span></td><td style="font-size:11px">Dhiraj Ganjoo</td></tr>
+          <tr style="background:#FEF2F2"><td style="font-size:11px;color:var(--red);font-weight:700">Jun</td><td style="font-weight:600">Chajigo — New Deal</td><td style="font-weight:700;color:var(--green)">₹9,00,000</td><td style="font-size:11px">Appointment Scheduled</td><td><span class="sb dt">Direct</span></td><td style="font-size:11px">Dhiraj Ganjoo</td></tr>
+          <tr style="background:#FEF2F2"><td style="font-size:11px;color:var(--red);font-weight:700">Jun</td><td style="font-weight:600">Zeus Docks — Premium CMS</td><td style="font-weight:700;color:var(--green)">₹4,50,000</td><td style="font-size:11px">Appointment Scheduled</td><td><span class="sb dt">Direct</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#FEF2F2"><td style="font-size:11px;color:var(--red);font-weight:700">Jun</td><td style="font-weight:600">Hardeep S P — Premium CMS</td><td style="font-weight:700;color:var(--green)">₹4,50,000</td><td style="font-size:11px">Qualified To Buy</td><td><span class="sb dt">Direct</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#FEF2F2"><td style="font-size:11px;color:var(--red);font-weight:700">Jun</td><td style="font-weight:600">Charge Fast X</td><td style="font-weight:700;color:var(--green)">₹3,30,000</td><td style="font-size:11px">Qualified To Buy</td><td><span class="sb ps">Paid Search</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#FEF2F2"><td style="font-size:11px;color:var(--red);font-weight:700">Jun</td><td style="font-weight:600">Gangashree EV — Premium</td><td style="font-weight:700;color:var(--green)">₹2,81,000</td><td style="font-size:11px;color:var(--green);font-weight:700">Closed Won ★</td><td><span class="sb ps">Paid Search</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:#FEF2F2"><td style="font-size:11px;color:var(--red);font-weight:700">Jun</td><td style="font-weight:600">Gangashree EV — Basic</td><td style="font-weight:700;color:var(--green)">₹19,000</td><td style="font-size:11px;color:var(--green);font-weight:700">Closed Won ★</td><td><span class="sb ps">Paid Search</span></td><td style="font-size:11px">Sathvik Reddy</td></tr>
+          <tr style="background:var(--g1)">
+            <td colspan="2" style="font-weight:800;font-size:12px">Q2 Total (Apr + May + Jun)</td>
+            <td style="font-weight:800;color:var(--green);font-size:13px">₹76,31,907</td>
+            <td colspan="3" style="font-size:11px;color:var(--t2)">7 Direct · 6 Paid Search · 2 Paid Social · 16 deals total</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="insight"><span class="gi">₹76.3L from 16 deals in Q2</span> — all from marketing-attributed sources. June alone contributed ₹41.3L (54% of Q2 total). <span class="gi">Direct traffic dominated in June with 5 of 8 deals</span> — the product and landing pages are strong organic conversion machines. 3 deal owners active in June vs 1 (Sathvik only) in May — pipeline is distributing.</div>
+    </div>
+  </div>
+  <div class="sf"></div>
+</section>
+
+<!-- ══ CHANNELS ══ -->
+<section id="channels" class="sec">
+  <div class="sec-hd"><div class="sec-ic">📡</div><div><h2>Top Channels — June 2026</h2><p>Original traffic source · HubSpot attribution · 1,558 total contacts</p></div></div>
+  <div class="card"><div class="ch"><h3>Contacts by Source — June 2026</h3><span class="tag">1,558 contacts · HubSpot</span></div>
+    <div class="cb"><div class="cw tall"><canvas id="chanC"></canvas></div>
+      <div class="insight"><span class="gi">Paid Social (Meta) leads at 826 contacts</span> — first time Meta outpaces G Ads in contact volume. Paid Search (G Ads) at 472 contacts (₹526 blended CPL). Direct Traffic at 260 contacts → produced 5 of 8 deals (₹35L). <span class="ri">LinkedIn: 0 contacts</span> — fully paused.</div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:0"><div class="ch"><h3>Channel Share of Contacts</h3></div><div class="cb"><div class="cw"><canvas id="chanPie"></canvas></div></div></div>
+  <div class="sf"></div>
+</section>
+
+<!-- ══ QUARTERLY ══ -->
+<section id="qtr" class="sec">
+  <div class="sec-hd"><div class="sec-ic">📈</div><div><h2>Q2 2026 — Complete</h2><p>Q4 2025 · Q1 2026 · Q2 2026 (Apr + May + Jun) · All three months done</p></div></div>
+  <div class="card" style="border:2px solid var(--red)">
+    <div class="ch"><h3>QoQ — Contacts, SAAS MQLs & SQLs</h3><span class="tag r">Q2 complete · ₹76.3L deal value</span></div>
+    <div class="cb"><div class="cw tall"><canvas id="qtrC"></canvas></div>
+      <div class="insight"><strong>Q2 2026 total: 3,338 contacts · 13 SAAS SQLs · ₹76.3L deal value.</strong> June's 1,555 contacts is the single-month high. <span class="gi">Q2 deal value (₹76.3L) already exceeds all prior periods</span> — Q1 was ₹54.6L. <span class="ri">SAAS SQLs in Q2: only 13 total</span> — LinkedIn near-pause severely impacted SAAS pipeline. HW volume compensates in contact count but SAAS deals are the high-value pipeline.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><h3>Summary Comparison Table</h3></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="qt">
+        <thead><tr><th>Period</th><th>Total Contacts</th><th>Growth</th><th>SAAS MQLs</th><th>SAAS SQLs</th><th>HW Lead %</th><th>Deal Value</th></tr></thead>
+        <tbody>
+          <tr class="q4"><td><strong>Q4 2025</strong><br><small style="color:var(--g3)">Oct–Dec (3 months)</small></td><td>534</td><td>—</td><td style="color:var(--t2)">97*</td><td>12</td><td style="color:var(--t2)">15.4%</td><td style="color:var(--t2)">—</td></tr>
+          <tr><td><strong>Q1 2026</strong><br><small style="color:var(--g3)">Jan–Mar (3 months)</small></td><td>1,473</td><td><span style="color:var(--green);font-weight:700">↑ +176%</span></td><td style="font-weight:600">411</td><td>21</td><td style="color:var(--green);font-weight:600">51.2%</td><td style="font-weight:600">₹54.6L</td></tr>
+          <tr><td><strong>Q2 — Apr 2026</strong></td><td>993</td><td>67% of Q1 in 1mo</td><td style="font-weight:600">214</td><td>11</td><td>68.3%</td><td style="font-weight:600">₹9.8L</td></tr>
+          <tr><td><strong>Q2 — May 2026</strong></td><td>790</td><td>↓ -20% vs Apr</td><td style="font-weight:600">155</td><td>1</td><td>59.0%</td><td style="font-weight:600">₹25.2L</td></tr>
+          <tr class="q2"><td>⭐ <strong>Q2 — Jun 2026</strong><br><small>Best month ever</small></td><td>1,555</td><td><span style="color:var(--green);font-weight:700">↑ +97% vs May</span></td><td style="color:var(--green);font-weight:800">291 ★</td><td>1</td><td style="color:var(--green);font-weight:800">76.0% ★</td><td style="color:var(--green);font-weight:800">₹41.3L ★★</td></tr>
+          <tr style="background:#F0FDF4"><td colspan="1" style="font-weight:800;color:var(--green)">Q2 Total</td><td style="font-weight:800;color:var(--green)">3,338</td><td style="font-weight:700;color:var(--green)">2.3× Q1</td><td style="font-weight:700;color:var(--green)">660</td><td style="font-weight:700;color:var(--green)">13</td><td style="font-weight:700;color:var(--green)">—</td><td style="font-weight:800;color:var(--green)">₹76.3L ★★</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="sf"></div>
+</section>
+
+<!-- ══ LINKEDIN ══ -->
+<section id="li" class="sec">
+  <div class="sec-hd"><div class="sec-ic" style="background:#EFF6FF;padding:5px"><span style="font-size:20px">⏸</span></div><div><h2>LinkedIn — June 2026</h2><p>Fully paused · ₹0 spend · 0 contacts</p></div></div>
+  <div class="pend" style="border-color:var(--g2)">
+    <h4>LinkedIn fully paused in June 2026</h4>
+    <p style="margin-top:6px;max-width:480px;margin-left:auto;margin-right:auto">₹0 spend · 0 HS contacts generated · OFA International (₹3.83L, May pipeline) still in active sales cycle. SAAS MQL collapse (155 → 14) directly linked to LinkedIn pause. Residual May pipeline (Badran Mohamed, LIM ALI JOI) still being worked.</p>
+    <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <span style="background:#DBEAFE;color:#1D4ED8;font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px">LinkedIn spend YTD: ₹7,06,710 (Nov'25–May'26)</span>
+      <span style="background:var(--red-bg);color:var(--red);font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px">Jun'26: ₹0 spend</span>
+      <span style="background:var(--green-bg);color:var(--green);font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px">Residual deals still converting</span>
+    </div>
+  </div>
+  <div class="sf"></div>
+</section>
+
+<!-- ══ GOOGLE ADS ══ -->
+<section id="gads" class="sec">
+  <div class="sec-hd"><div class="sec-ic" style="background:#fff;padding:4px"><img src="https://www.gstatic.com/images/branding/product/2x/google_ads_48dp.png" style="width:100%;height:100%;object-fit:contain" alt="Google Ads"></div><div><h2>Google Ads — June 2026</h2><p>₹2,48,111 total spend (incl. app) · 472 HS contacts · 3 deals · ₹6.3L value</p></div></div>
+
+  <div class="sg" style="grid-template-columns:repeat(4,1fr)">
+    <div class="sc r"><div class="sl">Total Spend (incl. app)</div><div class="sv" style="font-size:18px">₹2,48,111</div><div class="sd up">↑ +45% MoM</div></div>
+    <div class="sc"><div class="sl">HS Contacts</div><div class="sv">472</div><div class="ss">₹485 blended CPL</div></div>
+    <div class="sc g"><div class="sl">Deals</div><div class="sv">3</div><div class="ss">₹6.3L · All saas_ind_search</div></div>
+    <div class="sc" style="border-top:3px solid #D97706"><div class="sl">New Campaign</div><div class="sv" style="font-size:14px">Middle_East</div><div class="ss">ME geography · Jun 🆕</div></div>
+  </div>
+
+  <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:10px 14px;margin:12px 0;font-size:13px;line-height:1.7">
+    <strong style="font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--t2)">Deal Attribution (saas_ind_search — 3 deals)</strong><br>
+    <span>🟢 <strong>Gangashree EV — Basic Plan</strong> ₹19,000 ← <code style="background:#dbeafe;padding:2px 5px;border-radius:3px">saas_ind_search</code> · kw: <code style="background:#fef9c3;padding:2px 5px;border-radius:3px;color:#713f12">kazam</code> · Closed Won</span><br>
+    <span>🟢 <strong>Gangashree EV — Premium Expansion</strong> ₹2,81,000 ← <code style="background:#dbeafe;padding:2px 5px;border-radius:3px">saas_ind_search</code> · kw: <code style="background:#fef9c3;padding:2px 5px;border-radius:3px;color:#713f12">kazam</code> · Closed Won (same day)</span><br>
+    <span>🔵 <strong>Charge Fast X</strong> ₹3,30,000 ← <code style="background:#dbeafe;padding:2px 5px;border-radius:3px">saas_ind_search</code> · kw: <code style="background:#fef9c3;padding:2px 5px;border-radius:3px;color:#713f12">business ev charging station</code> · Qualified To Buy</span>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h3>Campaign Performance — June 2026</h3><span class="tag">9 campaigns · Windsor AI data</span></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="dtbl">
+        <thead><tr><th>Campaign</th><th>Type</th><th>Spend</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Conv (HS)</th><th>CPA</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AFR_Search</strong> <span style="font-size:10px;color:#D97706">⚡ #1 by spend</span></td><td><span class="sb ps">Search</span></td><td style="font-weight:700">₹66,948</td><td>5,541</td><td>461</td><td>8.32%</td><td style="font-weight:600">10</td><td style="color:var(--red);font-weight:700">₹6,695</td></tr>
+          <tr><td><strong>APAC_Search</strong></td><td><span class="sb ps">Search</span></td><td style="font-weight:700">₹54,242</td><td>4,728</td><td>295</td><td>6.24%</td><td style="font-weight:600">4</td><td style="color:var(--red);font-weight:700">₹13,561</td></tr>
+          <tr><td><strong>Hardware_Ind</strong></td><td><span class="sb ps">Search</span></td><td style="font-weight:700">₹44,654</td><td>30,608</td><td>2,100</td><td>6.86%</td><td style="color:var(--green);font-weight:700">100</td><td style="font-weight:700">₹447</td></tr>
+          <tr><td><strong>SAAS_Ind_Search</strong> <span style="font-size:10px;color:var(--green)">★ 3 deals</span></td><td><span class="sb ps">Search</span></td><td style="font-weight:700">₹23,272</td><td>9,618</td><td>1,158</td><td style="color:var(--green);font-weight:700">12.04% ★</td><td style="color:var(--green);font-weight:700">65</td><td style="font-weight:700">₹358</td></tr>
+          <tr><td><strong>Middle_East_Leads</strong> <span style="font-size:10px;color:var(--green);font-weight:600">NEW</span></td><td><span class="sb ps">Search</span></td><td style="font-weight:700">₹16,317</td><td>1,855</td><td>93</td><td>5.01%</td><td style="color:var(--g3)">0</td><td style="color:var(--g3)">—</td></tr>
+          <tr><td><strong>APP_Promo_Android (tier1)</strong></td><td><span class="sb off">App</span></td><td style="font-weight:700">₹16,320</td><td style="color:var(--green)">4,31,749</td><td style="color:var(--green)">60,601</td><td style="color:var(--green)">14.04%</td><td style="color:var(--green);font-weight:700">3,605 <span style="font-size:10px;font-weight:400;color:var(--g3)">installs</span></td><td style="color:var(--green);font-weight:700">₹4.53 <span style="font-size:10px;font-weight:400;color:var(--g3)">/install</span></td></tr>
+          <tr><td><strong>Ind_SAAS_Perf_Max</strong></td><td><span class="sb pso-li">Perf Max</span></td><td style="font-weight:700">₹14,873</td><td>54,792</td><td>4,318</td><td>7.88%</td><td style="color:var(--green);font-weight:700">190 ★</td><td style="color:var(--green);font-weight:700">₹78</td></tr>
+          <tr><td><strong>Remarketing_DemandGen</strong></td><td><span class="sb dt">Demand Gen</span></td><td style="font-weight:700">₹11,474</td><td>51,494</td><td>4,095</td><td>7.95%</td><td style="color:var(--green);font-weight:700">102</td><td style="font-weight:700">₹112</td></tr>
+          <tr><td><strong>Remarketing_All</strong> <span style="font-size:10px;color:var(--g3)">effectively paused</span></td><td><span class="sb dt">Demand Gen</span></td><td style="font-weight:700;color:var(--g3)">₹19</td><td>75</td><td>7</td><td>9.33%</td><td style="color:var(--g3)">0</td><td style="color:var(--g3)">—</td></tr>
+        </tbody>
+      </table>
+      <div class="insight" style="margin-top:10px"><span class="ri">AFR_Search now #1 by spend at ₹66,948 (27% of total ₹2,48,111 budget)</span> — up from ₹42,262 in May with no confirmed deals yet; quality assessment needed. <span class="gi">SAAS_Ind_Search produced all 3 G Ads deals despite only ₹23K spend (2.75x ROI)</span> — most efficient lead-to-deal campaign. Middle_East_Leads is a new geography campaign (₹16K · 93 clicks). <span class="ri">Remarketing_All essentially paused at ₹19</span> — DJ Vending (May deal) was the last convert from this campaign.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h3>App Campaign — APP_Promo_Android (tier1)</h3><span class="tag" style="background:#FEF3C7;color:#92400E">App · Target CPA</span></div>
+    <div class="cb">
+      <div class="sg" style="grid-template-columns:repeat(6,1fr);margin-bottom:0">
+        <div class="sc"><div class="sl">Spend</div><div class="sv" style="font-size:17px">₹16,320</div></div>
+        <div class="sc g"><div class="sl">Impressions</div><div class="sv">4.32L</div></div>
+        <div class="sc g"><div class="sl">Clicks</div><div class="sv">60,601</div><div class="ss">14.04% CTR ★</div></div>
+        <div class="sc"><div class="sl">Avg CPC</div><div class="sv" style="font-size:18px">₹0.27</div></div>
+        <div class="sc g"><div class="sl">Installs</div><div class="sv" style="color:var(--green)">3,605</div></div>
+        <div class="sc g"><div class="sl">Cost / Install</div><div class="sv" style="color:var(--green);font-size:17px">₹4.53</div></div>
+      </div>
+      <div class="insight" style="margin-top:10px">App campaign drives massive reach at <span class="gi">₹0.27 CPC · 14.04% CTR</span> — strong app discovery signal. 4.32L impressions in June. <span class="gi">3,605 installs at ₹4.53 CPI</span> — highly efficient for app growth. Budget separate from lead gen; installs feed Kazam app user base.</div>
+    </div>
+  </div>
+  <div class="sf"></div>
+</section>
+
+<!-- ══ META ══ -->
+<section id="meta" class="sec">
+  <div class="sec-hd"><div class="sec-ic" style="background:#0866FF;padding:5px;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 36 36" fill="white" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><path d="M18 3C9.716 3 3 9.716 3 18s6.716 15 15 15 15-6.716 15-15S26.284 3 18 3zm-1.5 22.5v-9H14v-3h2.5V11c0-2.485 1.515-4 3.763-4 1.07 0 2.237.19 2.237.19v2.46h-1.26c-1.24 0-1.627.772-1.627 1.562V13.5H22l-.5 3h-2.387v9H16.5z"/></svg></div><div><h2>Meta Ads — June 2026</h2><p>₹41,941 spend · 826 HS contacts · ₹50.8 CPL · 354K impressions</p></div></div>
+
+  <div class="sg" style="grid-template-columns:repeat(5,1fr)">
+    <div class="sc r"><div class="sl">Spend</div><div class="sv" style="font-size:18px">₹41,941</div><div class="sd up">↑ +70% MoM</div></div>
+    <div class="sc g"><div class="sl">HS Contacts</div><div class="sv">826</div><div class="ss">vs 256 in May ★</div></div>
+    <div class="sc g"><div class="sl">HS CPL</div><div class="sv">₹50.8</div><div class="sd up">↓ ₹97 → ₹51 ★★</div></div>
+    <div class="sc"><div class="sl">Impressions</div><div class="sv">354K</div></div>
+    <div class="sc"><div class="sl">Form Leads</div><div class="sv">789</div><div class="ss">₹39.9 form CPL ★★</div></div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h3>Meta Campaign Performance — June 2026</h3><span class="tag">₹41,941 · 826 HS contacts</span></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="dtbl">
+        <thead><tr><th>Campaign</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Results</th><th>Spend</th><th>CPC</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600">HW_New_Aud (20/04/26)</td>
+            <td>2,71,074</td>
+            <td>6,577</td>
+            <td>2.43%</td>
+            <td><span style="color:var(--green);font-weight:700">789 leads</span> <span style="font-size:10px;color:var(--g3)">₹39.9 CPL ★</span></td>
+            <td style="font-weight:700">₹31,495</td>
+            <td>₹4.79</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600">Kazam_LP_leads_SAAS_Tier1</td>
+            <td>83,204</td>
+            <td>3,483</td>
+            <td>4.19%</td>
+            <td><span style="color:var(--green);font-weight:700">35 HS leads</span> <span style="font-size:10px;color:var(--g3)">₹299 CPL</span></td>
+            <td style="font-weight:700">₹10,446</td>
+            <td>₹3.00</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="insight"><span class="gi">HW_New_Aud dominates: 789 form leads at ₹39.9 CPL</span> — 2.4× more leads than May's HW campaign (255 contacts) at lower CPL (₹55 May vs ₹40 Jun). Kazam_LP_leads_SAAS_Tier1 — 35 HS leads at ₹299 CPL via click-through (no Meta native form); 3,483 clicks at ₹3 CPC but <span class="ri">high drop-off on LP</span> — form conversion rate is the bottleneck. LP optimisation needed before scaling budget.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h3>HW_New_Aud — Ad Set Breakdown</h3><span class="tag">5 ad sets · Video vs Static</span></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="dtbl">
+        <thead><tr><th>Ad Set</th><th>Type</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Leads</th><th>Spend</th><th>CPL</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:600">HW_New_Aud(20/04/26) – vid_ads</td><td><span class="sb" style="background:#EDE9FE;color:#5B21B6">Video</span></td><td>74,678</td><td>2,461</td><td style="color:var(--green);font-weight:600">3.30% ★</td><td style="color:var(--green);font-weight:700">348</td><td>₹9,474</td><td style="color:var(--green);font-weight:700">₹27</td></tr>
+          <tr><td style="font-weight:600">Vid_ads_MH</td><td><span class="sb" style="background:#EDE9FE;color:#5B21B6">Video</span></td><td>49,346</td><td>1,242</td><td>2.52%</td><td style="font-weight:600">141</td><td>₹5,808</td><td>₹41</td></tr>
+          <tr><td style="font-weight:600">Vid_ads_karnataka</td><td><span class="sb" style="background:#EDE9FE;color:#5B21B6">Video</span></td><td>50,210</td><td>1,187</td><td>2.36%</td><td style="font-weight:600">107</td><td>₹5,761</td><td>₹54</td></tr>
+          <tr><td style="font-weight:600">HW_New_Aud(20/04/26)</td><td><span class="sb" style="background:#FEF3C7;color:#92400E">Static</span></td><td>88,053</td><td>1,548</td><td>1.76%</td><td style="font-weight:600">179</td><td>₹9,308</td><td>₹52</td></tr>
+          <tr><td style="font-weight:600">HW_New_Aud(20/04/26) Var2</td><td><span class="sb" style="background:#FEF3C7;color:#92400E">Static</span></td><td>8,787</td><td>139</td><td>1.58%</td><td style="color:var(--red)">14</td><td>₹1,143</td><td style="color:var(--red)">₹82</td></tr>
+          <tr style="background:#F0FDF4">
+            <td colspan="2" style="font-weight:800;color:#5B21B6">🎬 Video Total (3 ad sets)</td>
+            <td style="font-weight:700">1,74,234</td><td style="font-weight:700">4,890</td><td style="font-weight:700;color:var(--green)">2.81%</td>
+            <td style="font-weight:800;color:var(--green)">596</td><td style="font-weight:700">₹21,043</td><td style="font-weight:800;color:var(--green)">₹35</td>
+          </tr>
+          <tr style="background:#FFFBEB">
+            <td colspan="2" style="font-weight:800;color:#92400E">🖼 Static Total (2 ad sets)</td>
+            <td style="font-weight:700">96,840</td><td style="font-weight:700">1,687</td><td style="font-weight:700">1.74%</td>
+            <td style="font-weight:800">193</td><td style="font-weight:700">₹10,451</td><td style="font-weight:800;color:var(--red)">₹54</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="insight" style="margin-top:10px"><span class="gi">Video ads outperform static on every metric</span> — 596 leads at ₹35 CPL vs 193 leads at ₹54 CPL (+54% more expensive per lead). <span class="gi">HW_New_Aud – vid_ads is the star at ₹27 CPL</span> with 3.30% CTR (highest in the campaign). Vid_ads_karnataka CPL (₹54) matches static — review creative. <span class="ri">HW_New_Aud Var2 static underperforms at ₹82 CPL</span> — candidate to pause and reallocate budget to video.</div>
+    </div>
+  </div>
+
+  <div class="sf"></div>
+</section>
+
+<!-- ══ GA4 TRAFFIC ══ -->
+<section id="ga4" class="sec">
+  <div class="sec-hd"><div class="sec-ic">🌐</div><div><h2>Website & LP Traffic (GA4)</h2><p>Jun 1–30, 2026 · 7,319 sessions · 86.77% engagement rate</p></div></div>
+
+  <!-- Overview tiles -->
+  <div class="sg" style="grid-template-columns:repeat(5,1fr)">
+    <div class="sc"><div class="sl">Active Users</div><div class="sv">4,392</div><div class="ss" style="color:var(--green)">↑ vs 3.9K May</div></div>
+    <div class="sc g"><div class="sl">New Users</div><div class="sv">4,150</div><div class="ss">94.5% new</div></div>
+    <div class="sc g"><div class="sl">Sessions</div><div class="sv">7,319</div><div class="ss" style="color:var(--green)">↑ vs 6.2K May</div></div>
+    <div class="sc" style="border-top:3px solid var(--green)"><div class="sl">Engagement Rate</div><div class="sv" style="color:var(--green)">86.77%</div><div class="ss">vs 88.3% May ≈ stable</div></div>
+    <div class="sc g"><div class="sl">Avg Session Time</div><div class="sv">1m 41s</div><div class="ss" style="color:var(--green)">↑ vs 1m 27s May</div></div>
+  </div>
+
+  <!-- Channel breakdown -->
+  <div class="card">
+    <div class="ch"><h3>Traffic by Channel</h3><span class="tag r">7,319 sessions · June 2026</span></div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr><th>#</th><th style="text-align:left">Channel</th><th>Sessions</th><th>Share</th><th>Engaged Sessions</th><th>Engagement Rate</th><th>Avg Time/Session</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--g3)">1</td><td style="text-align:left;font-weight:600">Direct</td><td>2,401</td><td>32.81%</td><td>2,084</td><td>86.8%</td><td>1m 25s</td></tr>
+          <tr><td style="color:var(--g3)">2</td><td style="text-align:left;font-weight:600">Paid Search (G Ads)</td><td>1,475</td><td>20.15%</td><td>1,222</td><td>82.85%</td><td>43s</td></tr>
+          <tr><td style="color:var(--g3)">3</td><td style="text-align:left;font-weight:600">Cross-network</td><td>1,255</td><td>17.15%</td><td style="color:var(--green);font-weight:600">1,229</td><td style="color:var(--green);font-weight:600">97.93%</td><td>43s</td></tr>
+          <tr><td style="color:var(--g3)">4</td><td style="text-align:left;font-weight:600">Organic Search</td><td>1,010</td><td>13.8%</td><td>872</td><td>86.34%</td><td>1m 12s</td></tr>
+          <tr><td style="color:var(--g3)">5</td><td style="text-align:left;font-weight:600">Display</td><td>413</td><td>5.64%</td><td style="color:var(--green);font-weight:600">413</td><td style="color:var(--green);font-weight:700">100% ★</td><td>51s</td></tr>
+          <tr><td style="color:var(--g3)">6</td><td style="text-align:left;font-weight:600;color:var(--g3)">Unassigned</td><td style="color:var(--g3)">211</td><td style="color:var(--g3)">2.88%</td><td style="color:var(--red)">42</td><td style="color:var(--red);font-weight:600">19.91% ⚠</td><td style="color:var(--g3)">21s</td></tr>
+          <tr><td style="color:var(--g3)">7</td><td style="text-align:left;font-weight:600">Paid Social (Meta)</td><td>207</td><td>2.83%</td><td>205</td><td style="color:var(--green);font-weight:600">99.03% ★</td><td>45s</td></tr>
+          <tr><td style="color:var(--g3)">8</td><td style="text-align:left;font-weight:600">Referral</td><td>139</td><td>1.9%</td><td>113</td><td>81.29%</td><td>1m 13s</td></tr>
+          <tr><td style="color:var(--g3)">9</td><td style="text-align:left;font-weight:600">Organic Social</td><td>67</td><td>0.92%</td><td>64</td><td>95.52%</td><td>22s</td></tr>
+          <tr><td style="color:var(--g3)">10</td><td style="text-align:left;font-weight:600">AI Assistant</td><td>47</td><td>0.64%</td><td>42</td><td>89.36%</td><td>34s</td></tr>
+          <tr style="background:var(--g1);font-weight:700"><td colspan="2" style="text-align:left">Total</td><td>7,319</td><td>100%</td><td>6,351</td><td style="color:var(--green)">86.77%</td><td>1m 00s</td></tr>
+        </tbody>
+      </table>
+      <div class="insight"><span class="gi">Direct traffic dominates at 32.8%</span> — strong brand recall and direct URL visits. Paid Search (G Ads) drives 1,475 sessions (20.15%). Cross-network and Display show 97–100% engagement rates — strong intent signals. New AI Assistant channel (47 sessions) — emerging traffic source to monitor.</div>
+    </div>
+  </div>
+
+  <!-- Two-col: Country + City -->
+  <div class="two">
+    <div class="card">
+      <div class="ch"><h3>Top Countries</h3><span class="tag">Active users · June 2026</span></div>
+      <div class="cb" style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr><th>#</th><th style="text-align:left">Country</th><th>Active Users</th><th>Share</th><th>Eng Rate</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--g3)">1</td><td style="text-align:left;font-weight:600">India</td><td style="color:var(--green);font-weight:700">3,606</td><td>82.1%</td><td>85.6%</td></tr>
+            <tr><td style="color:var(--g3)">2</td><td style="text-align:left">Bangladesh</td><td>226</td><td>5.15%</td><td style="color:var(--green)">98.43%</td></tr>
+            <tr><td style="color:var(--g3)">3</td><td style="text-align:left">United States</td><td>55</td><td>1.25%</td><td style="color:var(--green)">100%</td></tr>
+            <tr><td style="color:var(--g3)">4</td><td style="text-align:left">Pakistan</td><td>51</td><td>1.16%</td><td>95.24%</td></tr>
+            <tr><td style="color:var(--g3)">5</td><td style="text-align:left">South Africa</td><td>42</td><td>0.96%</td><td style="color:var(--green)">100%</td></tr>
+            <tr><td style="color:var(--g3)">6</td><td style="text-align:left">Nigeria</td><td>36</td><td>0.82%</td><td>97.67%</td></tr>
+            <tr><td style="color:var(--g3)">7</td><td style="text-align:left">Kenya</td><td>30</td><td>0.68%</td><td style="color:var(--green)">100%</td></tr>
+            <tr><td style="color:var(--g3)">8</td><td style="text-align:left">Philippines</td><td>29</td><td>0.66%</td><td style="color:var(--green)">100%</td></tr>
+            <tr><td style="color:var(--g3)">9</td><td style="text-align:left">UAE</td><td>28</td><td>0.64%</td><td>80.49%</td></tr>
+            <tr><td style="color:var(--g3)">10</td><td style="text-align:left">Ghana</td><td>26</td><td>0.59%</td><td>85.29%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>Top Cities</h3><span class="tag">Active users · June 2026</span></div>
+      <div class="cb" style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr><th>#</th><th style="text-align:left">City</th><th>Active Users</th><th>Share</th><th>Eng Rate</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--g3)">1</td><td style="text-align:left;font-weight:600">Bengaluru</td><td style="color:var(--green);font-weight:700">680</td><td>15.48%</td><td>76.94%</td></tr>
+            <tr><td style="color:var(--g3)">2</td><td style="text-align:left;color:var(--g3)">(not set)</td><td style="color:var(--g3)">319</td><td style="color:var(--g3)">7.26%</td><td style="color:var(--g3)">94.94%</td></tr>
+            <tr><td style="color:var(--g3)">3</td><td style="text-align:left">Hyderabad</td><td>267</td><td>6.08%</td><td>94.89%</td></tr>
+            <tr><td style="color:var(--g3)">4</td><td style="text-align:left">Delhi</td><td>250</td><td>5.69%</td><td>84.18%</td></tr>
+            <tr><td style="color:var(--g3)">5</td><td style="text-align:left">Mumbai</td><td>198</td><td>4.51%</td><td>89.09%</td></tr>
+            <tr><td style="color:var(--g3)">6</td><td style="text-align:left">Guwahati</td><td>176</td><td>4.01%</td><td style="color:var(--green)">99.5%</td></tr>
+            <tr><td style="color:var(--g3)">7</td><td style="text-align:left">Pune</td><td>161</td><td>3.67%</td><td>96.1%</td></tr>
+            <tr><td style="color:var(--g3)">8</td><td style="text-align:left">Lucknow</td><td>139</td><td>3.16%</td><td style="color:var(--green)">98.88%</td></tr>
+            <tr><td style="color:var(--g3)">9</td><td style="text-align:left">Chennai</td><td>134</td><td>3.05%</td><td>82.95%</td></tr>
+            <tr><td style="color:var(--g3)">10</td><td style="text-align:left">Patna</td><td>98</td><td>2.23%</td><td>97.22%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Device + OS -->
+  <div class="two">
+    <div class="card">
+      <div class="ch"><h3>Device & Platform</h3><span class="tag">Active users · June 2026</span></div>
+      <div class="cb">
+        <div class="sg" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">
+          <div class="sc"><div class="sl">Mobile</div><div class="sv" style="color:var(--red)">74.9%</div><div class="ss">3,300 users</div></div>
+          <div class="sc g"><div class="sl">Desktop</div><div class="sv">24.7%</div><div class="ss">1,100 users</div></div>
+          <div class="sc g"><div class="sl">Tablet</div><div class="sv" style="color:var(--g3)">0.4%</div><div class="ss">19 users</div></div>
+        </div>
+        <table class="tbl">
+          <thead><tr><th style="text-align:left">Platform</th><th>Active Users</th></tr></thead>
+          <tbody>
+            <tr><td style="text-align:left">web / mobile</td><td style="font-weight:700;color:var(--red)">3,300</td></tr>
+            <tr><td style="text-align:left">web / desktop</td><td style="font-weight:600">1,100</td></tr>
+            <tr><td style="text-align:left;color:var(--g3)">web / tablet</td><td style="color:var(--g3)">19</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>Operating System</h3><span class="tag">Active users · June 2026</span></div>
+      <div class="cb">
+        <table class="tbl">
+          <thead><tr><th style="text-align:left">OS</th><th>Active Users</th><th>Share</th></tr></thead>
+          <tbody>
+            <tr><td style="text-align:left;font-weight:600">Android</td><td style="color:var(--green);font-weight:700">2,700</td><td>61.5%</td></tr>
+            <tr><td style="text-align:left;font-weight:600">Windows</td><td>817</td><td>18.6%</td></tr>
+            <tr><td style="text-align:left">iOS</td><td>576</td><td>13.1%</td></tr>
+            <tr><td style="text-align:left">Macintosh</td><td>214</td><td>4.9%</td></tr>
+            <tr><td style="text-align:left;color:var(--g3)">Linux</td><td style="color:var(--g3)">41</td><td style="color:var(--g3)">0.9%</td></tr>
+            <tr><td style="text-align:left;color:var(--g3)">Chrome OS</td><td style="color:var(--g3)">12</td><td style="color:var(--g3)">0.3%</td></tr>
+          </tbody>
+        </table>
+        <div class="insight" style="margin-top:10px"><span class="gi">Android dominates at 61.5%</span> — aligns with HW campaign audience. Mobile-first experience is critical: 74.9% of sessions on mobile.</div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"></div>
+</section>
+
+<!-- ══ NEXT STEPS ══ -->
+<section id="next" class="sec">
+  <div class="sec-hd"><div class="sec-ic">🚀</div><div><h2>Next Steps — July 2026</h2><p>Priority actions based on June learnings</p></div></div>
+
+  <div class="nsg" style="grid-template-columns:1fr 1fr">
+    <div class="nsc">
+      <div class="nsh meta">Meta — Scale HW_New_Aud Aggressively</div>
+      <div class="nsi">
+        <div class="nsit">Scale HW_New_Aud from ₹31K → ₹50K/month (789 leads at ₹40 CPL is proven)</div>
+        <div class="nsit">Resume Kazam_LP_SAAS_Tier1 landing page Campaign</div>
+      </div>
+    </div>
+    <div class="nsc">
+      <div class="nsh ga">Google Ads — Optimise Geography Mix</div>
+      <div class="nsi">
+        <div class="nsit">Audit AFR_Search quality — ₹67K spend in June, 0 confirmed deals; check lead quality vs APAC benchmark</div>
+        <div class="nsit">Monitor Middle_East_Leads (new) — 93 clicks from ₹16K; assess quality before scaling</div>
+        <div class="nsit">Protect SAAS_Ind_Search budget — produced 3 deals in June from ₹23K spend (best ROI campaign)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nsg" style="grid-template-columns:1fr 1fr;margin-top:16px">
+    <div class="nsc">
+      <div class="nsh li">LinkedIn — Reactivate for SAAS</div>
+      <div class="nsi">
+        <div class="nsit">SAAS MQLs at 14 in June (was 214 in April) — LinkedIn pause directly caused the collapse</div>
+        <div class="nsit">Restart conversation_ads_hs_intent with ₹50K–₹1L test budget</div>
+        <div class="nsit">Target 50–80 SAAS MQLs in July to rebuild pipeline; 60-day conversion cycle means July SQLs arrive by September</div>
+      </div>
+    </div>
+    <div class="nsc">
+      <div class="nsh str">Pipeline — Protect High-Intent Pages</div>
+      <div class="nsi">
+        <div class="nsit">kazam.energy/get-in-touch produced 3 deals in one day (Jun 19) — protect form uptime and mobile UX</div>
+        <div class="nsit">kazam.energy/products/revenue-management generated Chajigo deal (₹9L) — review SEO and paid support for this page</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="ch"><h3>Priority Action Ranking — July 2026</h3><span class="tag">Based on June ROI analysis</span></div>
+    <div class="cb">
+      <table class="dtbl">
+        <thead><tr><th>Priority</th><th>Action</th><th>Why</th><th>Expected Impact</th></tr></thead>
+        <tbody>
+          <tr><td><span style="font-weight:800;color:var(--red);font-size:13px">P1</span></td><td style="font-weight:600">Scale Meta HW_New_Aud to ₹80K+</td><td style="font-size:11px;color:var(--t2)">789 leads @ ₹40 CPL — proven efficiency; scaling will multiply volume</td><td style="font-size:11px;color:var(--green)">1,500–1,800 HW form leads</td></tr>
+          <tr><td><span style="font-weight:800;color:var(--red);font-size:13px">P1</span></td><td style="font-weight:600">Reactivate LinkedIn (SAAS)</td><td style="font-size:11px;color:var(--t2)">SAAS MQLs at 14 — pipeline dry; LinkedIn was primary SAAS source</td><td style="font-size:11px;color:var(--green)">50–80 SAAS MQLs</td></tr>
+          <tr><td><span style="font-weight:800;color:var(--t2);font-size:13px">P2</span></td><td style="font-weight:600">Audit AFR_Search quality</td><td style="font-size:11px;color:var(--t2)">₹67K spent in June — 0 deals yet; need quality check vs APAC</td><td style="font-size:11px;color:var(--green)">1 deal potential if quality holds</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="sf"></div>
+</section>
+
+</main>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (el) el.classList.add('active');
+}
+
+const R='#B91C1C',G='#15803D',B='#0A66C2',FB='#1877F2',GR='#E8E7E7',S='#DCDBDB';
+
+// MQL Trend
+new Chart(document.getElementById('mqlChart'), {
+  type:'bar',
+  data:{
+    labels:['Nov\'25','Dec\'25','Jan\'26','Feb\'26','Mar\'26','Apr\'26','May\'26','Jun\'26'],
+    datasets:[
+      {label:'SAAS MQLs',data:[74,23,40,181,190,214,155,291],backgroundColor:'#1E3A5F',borderRadius:3},
+      {label:'HW MQLs',data:[28,36,144,283,331,601,467,470],backgroundColor:R,borderRadius:3}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'Manrope',size:11},boxWidth:12}}},scales:{x:{stacked:true,grid:{display:false},ticks:{font:{family:'Manrope',size:11}}},y:{stacked:true,grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Manrope',size:11}}}}}
+});
+
+// Spend Pie
+new Chart(document.getElementById('spendPie'), {
+  type:'doughnut',
+  data:{
+    labels:['Google Ads','Meta'],
+    datasets:[{data:[248111,41941],backgroundColor:[R,FB],borderWidth:0,hoverOffset:6}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false}}}
+});
+
+// Stage Chart
+new Chart(document.getElementById('stageC'), {
+  type:'bar',
+  data:{
+    labels:['Hardware Lead','In Progress (SAAS)','Unqualified','MQL (SAAS)','MQL (Hybrid)','Info Gathering','SQL (SAAS)'],
+    datasets:[
+      {label:'May 2026',data:[466,207,83,22,2,0,1],backgroundColor:'rgba(185,28,28,.2)',borderRadius:3},
+      {label:'Jun 2026',data:[1182,267,80,14,9,2,1],backgroundColor:R,borderRadius:3}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'Manrope',size:11},boxWidth:12}}},scales:{x:{grid:{display:false},ticks:{font:{family:'Manrope',size:11}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Manrope',size:11}}}}}
+});
+
+// SQL Source
+new Chart(document.getElementById('sqlSrc'), {
+  type:'doughnut',
+  data:{
+    labels:['Direct Traffic'],
+    datasets:[{data:[2],backgroundColor:['#15803D'],borderWidth:0,hoverOffset:6}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom',labels:{font:{family:'Manrope',size:11},boxWidth:12}}}}
+});
+
+// Deal Value by Channel
+new Chart(document.getElementById('dealC'), {
+  type:'bar',
+  data:{
+    labels:['Direct Traffic\n(5 deals)','Google Ads\n(3 deals)'],
+    datasets:[{label:'Deal Value (₹)',data:[3500000,630000],backgroundColor:['#15803D',R],borderRadius:4}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{family:'Manrope',size:11}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Manrope',size:10},callback:v=>'₹'+Math.round(v/100000)+'L'}}}}
+});
+
+// Channels bar
+new Chart(document.getElementById('chanC'), {
+  type:'bar',
+  data:{
+    labels:['Paid Social (Meta)','Paid Search (G Ads)','Direct Traffic'],
+    datasets:[{label:'HS Contacts Jun 2026',data:[826,472,260],backgroundColor:[FB,R,'#374151'],borderRadius:4}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Manrope',size:11}}},y:{grid:{display:false},ticks:{font:{family:'Manrope',size:11}}}}}
+});
+
+// Channel Pie
+new Chart(document.getElementById('chanPie'), {
+  type:'doughnut',
+  data:{
+    labels:['Paid Social (Meta)','Paid Search (G Ads)','Direct Traffic'],
+    datasets:[{data:[826,472,260],backgroundColor:[FB,R,'#374151'],borderWidth:0,hoverOffset:6}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom',labels:{font:{family:'Manrope',size:11},boxWidth:12}}}}
+});
+
+// QTR chart
+new Chart(document.getElementById('qtrC'), {
+  type:'bar',
+  data:{
+    labels:['Q4 2025\n(3mo)','Q1 2026\n(3mo)','Apr 2026\n(1mo)','May 2026\n(1mo)','Jun 2026\n(1mo)'],
+    datasets:[
+      {label:'Total Contacts',data:[534,1473,993,790,1555],backgroundColor:GR,borderRadius:4,yAxisID:'y'},
+      {label:'SAAS MQLs',data:[97,411,214,155,291],backgroundColor:'#1E3A5F',borderRadius:4,yAxisID:'y'},
+      {label:'SAAS SQLs',data:[12,21,11,1,1],backgroundColor:R,borderRadius:4,yAxisID:'y1'}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'Manrope',size:11},boxWidth:12}}},scales:{x:{grid:{display:false},ticks:{font:{family:'Manrope',size:10}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Manrope',size:11}},position:'left'},y1:{grid:{display:false},ticks:{font:{family:'Manrope',size:11},stepSize:5},position:'right',min:0}}}
+});
+
+// HW Customer Type
+new Chart(document.getElementById('hwCustC'), {
+  type:'bar',
+  data:{
+    labels:['CPO','Individual','RWA'],
+    datasets:[{label:'Leads',data:[196,35,14],backgroundColor:[R,'#D97706','#0891B2'],borderRadius:4}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Manrope',size:11}}},y:{grid:{display:false},ticks:{font:{family:'Manrope',size:11}}}}}
+});
+
+// HW Status Breakdown
+new Chart(document.getElementById('hwStatusC'), {
+  type:'doughnut',
+  data:{
+    labels:['Not Responding','Proposal Shared','Requested CB','Not Interested','Just Looking','No Status','Closed Won'],
+    datasets:[{data:[640,340,129,114,63,4,1],backgroundColor:['#6B7280',G,'#0891B2',R,'#9CA3AF','#D1D5DB','#15803D'],borderWidth:0,hoverOffset:6}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'bottom',labels:{font:{family:'Manrope',size:10},boxWidth:10}}}}
+});
+
+// Lead Source x Campaign
+new Chart(document.getElementById('hwSrcC'), {
+  type:'bar',
+  data:{
+    labels:['Paid Social','Paid Search','Direct Traffic','None','Offline','Referrals','AI Referrals','Other'],
+    datasets:[{label:'Leads',data:[547,215,186,174,147,17,1,1],backgroundColor:[FB,R,'#374151','#9CA3AF','#D97706','#0891B2','#6D28D9','#6B7280'],borderRadius:4}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Manrope',size:10}}},y:{grid:{display:false},ticks:{font:{family:'Manrope',size:10}}}}}
+});
+
+// Revenue by Customer Type
+new Chart(document.getElementById('hwRevC'), {
+  type:'bar',
+  data:{
+    labels:['Individual','CPO','None'],
+    datasets:[{label:'Deal Amount (₹)',data:[49350,25590,20000],backgroundColor:[G,R,'#9CA3AF'],borderRadius:4}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{family:'Manrope',size:10}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Manrope',size:10},callback:v=>'₹'+v.toLocaleString('en-IN')}}}}
+});
+</script>
+</body>
+</html>
